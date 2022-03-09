@@ -1,5 +1,6 @@
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 import path from "path";
 
 const config: Configuration = {
@@ -15,6 +16,18 @@ const config: Configuration = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       minify: true,
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "public",
+          to: "./",
+          filter: (path) => {
+            if (path.endsWith("index.html")) return false;
+            return true;
+          },
+        },
+      ],
     }),
   ],
   resolve: {
