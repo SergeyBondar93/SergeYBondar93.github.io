@@ -6757,6 +6757,38 @@ scene.add(light);
     const emailLinkX = (coordsEmail.x * 0.5 + 0.5) * renderer_1.canvas.clientWidth;
     const emailLinkY = (coordsEmail.y * -0.5 + 0.5) * renderer_1.canvas.clientHeight;
     eventListeners_1.emailLink.style.transform = `translate(-50%, -50%) translate(${emailLinkX + 155}px,${emailLinkY - 8}px)`;
+    const moveLinks = () => {
+        const coordsGithub = new THREE.Vector3();
+        github.updateWorldMatrix(true, false);
+        github.getWorldPosition(coordsGithub);
+        coordsGithub.project(camera_1.camera);
+        const ghLinkX = (coordsGithub.x * 0.5 + 0.5) * renderer_1.canvas.clientWidth;
+        const ghLinkY = (coordsGithub.y * -0.5 + 0.5) * renderer_1.canvas.clientHeight;
+        eventListeners_1.githubLink.style.transform = `translate(-50%, -50%) translate(${ghLinkX + 50}px,${ghLinkY - 8}px)`;
+        const coordsHH = new THREE.Vector3();
+        hh.updateWorldMatrix(true, false);
+        hh.getWorldPosition(coordsHH);
+        coordsHH.project(camera_1.camera);
+        const hhLinkX = (coordsHH.x * 0.5 + 0.5) * renderer_1.canvas.clientWidth;
+        const hhLinkY = (coordsHH.y * -0.5 + 0.5) * renderer_1.canvas.clientHeight;
+        eventListeners_1.hhLink.style.transform = `translate(-50%, -50%) translate(${hhLinkX + 50}px,${hhLinkY - 8}px)`;
+        const coordsTG = new THREE.Vector3();
+        tg.updateWorldMatrix(true, false);
+        tg.getWorldPosition(coordsTG);
+        coordsTG.project(camera_1.camera);
+        const tgLinkX = (coordsTG.x * 0.5 + 0.5) * renderer_1.canvas.clientWidth;
+        const tgLinkY = (coordsTG.y * -0.5 + 0.5) * renderer_1.canvas.clientHeight;
+        eventListeners_1.tgLink.style.transform = `translate(-50%, -50%) translate(${tgLinkX + 240}px,${tgLinkY - 8}px)`;
+        const coordsEmail = new THREE.Vector3();
+        email.updateWorldMatrix(true, false);
+        email.getWorldPosition(coordsEmail);
+        coordsEmail.project(camera_1.camera);
+        const emailLinkX = (coordsEmail.x * 0.5 + 0.5) * renderer_1.canvas.clientWidth;
+        const emailLinkY = (coordsEmail.y * -0.5 + 0.5) * renderer_1.canvas.clientHeight;
+        eventListeners_1.emailLink.style.transform = `translate(-50%, -50%) translate(${emailLinkX + 155}px,${emailLinkY - 8}px)`;
+    };
+    moveLinks();
+    window.addEventListener("resize", moveLinks);
 }))();
 const clock = new THREE.Clock();
 cursor_1.pointLight4.position.z = 0;
@@ -100577,4 +100609,4 @@ module.exports = JSON.parse('[{"groupName":"Web development","points":["JS ES6+ 
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=bundle.2fddadb82e6c0a6be6f6.js.map
+//# sourceMappingURL=bundle.265698b3fbb787f45ab8.js.map
