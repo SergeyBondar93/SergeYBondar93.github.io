@@ -5627,14 +5627,16 @@ exports.camera.position.z = 6;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.headerSize = exports.paragraphSize = exports.coordZ = exports.coordX = exports.paragraphLineHeight = exports.headerLineHeight = exports.defaultCameraY = void 0;
+exports.highlightTextY = exports.textColor = exports.headerSize = exports.paragraphSize = exports.coordZ = exports.coordX = exports.paragraphLineHeight = exports.headerLineHeight = exports.defaultCameraY = void 0;
 exports.defaultCameraY = 0;
 exports.headerLineHeight = 0.3;
-exports.paragraphLineHeight = 0.4;
+exports.paragraphLineHeight = 0.44;
 exports.coordX = -4.2;
 exports.coordZ = 0;
 exports.paragraphSize = 0.22;
 exports.headerSize = 0.35;
+exports.textColor = "#faf8bb";
+exports.highlightTextY = -0.05;
 
 
 /***/ }),
@@ -6480,7 +6482,7 @@ const createTextPlate = (textsJson) => __awaiter(void 0, void 0, void 0, functio
     const textPlateMesh = new THREE.Mesh(textPlateGeometry, textPlateMaterial);
     const font = loader.parse(helvetiker_regular_typeface_json_1.default);
     const material = new THREE.MeshPhongMaterial({
-        color: "#faf8bb",
+        color: consts_1.textColor,
         transparent: false,
         opacity: 1,
     });
@@ -6698,6 +6700,7 @@ const galactic_1 = __webpack_require__(/*! ./meshs/galactic */ "./src/meshs/gala
 const skills_json_1 = __importDefault(__webpack_require__(/*! ./skills.json */ "./src/skills.json"));
 const introduce_json_1 = __importDefault(__webpack_require__(/*! ./introduce.json */ "./src/introduce.json"));
 const contacts_json_1 = __importDefault(__webpack_require__(/*! ./contacts.json */ "./src/contacts.json"));
+const consts_1 = __webpack_require__(/*! ./consts */ "./src/consts.ts");
 const scene = new THREE.Scene();
 scene.add(camera_1.camera);
 scene.add(cursor_1.pointLight4);
@@ -6729,6 +6732,27 @@ scene.add(light);
     contactsMesh.rotateY((0, MathUtils_1.degToRad)(5));
     scene.add(contactsMesh);
     const [, github, hh, tg, email] = contactsMesh.children;
+    const material = new THREE.MeshPhongMaterial({ color: consts_1.textColor });
+    const geometryGithub = new THREE.BoxGeometry(0.9, 0.04, 0.1);
+    const highlightGithub = new THREE.Mesh(geometryGithub, material);
+    highlightGithub.position.x = 0.45;
+    highlightGithub.position.y = consts_1.highlightTextY;
+    github.add(highlightGithub);
+    const geometryHH = new THREE.BoxGeometry(0.38, 0.04, 0.1);
+    const highlightHH = new THREE.Mesh(geometryHH, material);
+    highlightHH.position.x = 0.19;
+    highlightHH.position.y = consts_1.highlightTextY;
+    hh.add(highlightHH);
+    const geometryTG = new THREE.BoxGeometry(5.95, 0.04, 0.1);
+    const highlightTG = new THREE.Mesh(geometryTG, material);
+    highlightTG.position.x = 2.98;
+    highlightTG.position.y = consts_1.highlightTextY - 0.05;
+    tg.add(highlightTG);
+    const geometryEmail = new THREE.BoxGeometry(3.8, 0.04, 0.1);
+    const highlightEmail = new THREE.Mesh(geometryEmail, material);
+    highlightEmail.position.x = 1.9;
+    highlightEmail.position.y = consts_1.highlightTextY - 0.05;
+    email.add(highlightEmail);
     const coordsGithub = new THREE.Vector3();
     github.updateWorldMatrix(true, false);
     github.getWorldPosition(coordsGithub);
@@ -100609,4 +100633,4 @@ module.exports = JSON.parse('[{"groupName":"Web development","points":["JS ES6+ 
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=bundle.265698b3fbb787f45ab8.js.map
+//# sourceMappingURL=bundle.4b40783244dc8711c238.js.map
