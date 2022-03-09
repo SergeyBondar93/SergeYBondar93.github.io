@@ -22,6 +22,7 @@ import { galactic1, galactic2, galactic3 } from "./meshs/galactic";
 import skillsText from "./skills.json";
 import introduceText from "./introduce.json";
 import contactsText from "./contacts.json";
+import { highlightTextY, textColor } from "./consts";
 
 const scene = new THREE.Scene();
 
@@ -66,6 +67,32 @@ scene.add(light);
   contactsMesh.rotateY(degToRad(5));
   scene.add(contactsMesh);
   const [, github, hh, tg, email] = contactsMesh.children;
+
+  const material = new THREE.MeshPhongMaterial({ color: textColor });
+
+  const geometryGithub = new THREE.BoxGeometry(0.9, 0.04, 0.1);
+  const highlightGithub = new THREE.Mesh(geometryGithub, material);
+  highlightGithub.position.x = 0.45;
+  highlightGithub.position.y = highlightTextY;
+  github.add(highlightGithub);
+
+  const geometryHH = new THREE.BoxGeometry(0.38, 0.04, 0.1);
+  const highlightHH = new THREE.Mesh(geometryHH, material);
+  highlightHH.position.x = 0.19;
+  highlightHH.position.y = highlightTextY;
+  hh.add(highlightHH);
+
+  const geometryTG = new THREE.BoxGeometry(5.95, 0.04, 0.1);
+  const highlightTG = new THREE.Mesh(geometryTG, material);
+  highlightTG.position.x = 2.98;
+  highlightTG.position.y = highlightTextY - 0.05;
+  tg.add(highlightTG);
+
+  const geometryEmail = new THREE.BoxGeometry(3.8, 0.04, 0.1);
+  const highlightEmail = new THREE.Mesh(geometryEmail, material);
+  highlightEmail.position.x = 1.9;
+  highlightEmail.position.y = highlightTextY - 0.05;
+  email.add(highlightEmail);
 
   const coordsGithub = new THREE.Vector3();
 

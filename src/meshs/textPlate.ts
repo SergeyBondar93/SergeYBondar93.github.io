@@ -10,6 +10,7 @@ import {
   headerSize,
   paragraphLineHeight,
   paragraphSize,
+  textColor,
 } from "../consts";
 
 const loader = new FontLoader();
@@ -26,7 +27,7 @@ export const createTextPlate = async (textsJson) => {
   const font = loader.parse(fontUrl);
 
   const material = new THREE.MeshPhongMaterial({
-    color: "#faf8bb",
+    color: textColor,
     transparent: false,
     opacity: 1,
   });
