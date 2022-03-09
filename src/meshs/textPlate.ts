@@ -1,6 +1,6 @@
-import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
-import { degToRad } from "three/src/math/MathUtils";
+import fontUrl from "./helvetiker_regular.typeface.json";
 import * as THREE from "three";
 
 import {
@@ -23,10 +23,7 @@ export const createTextPlate = async (textsJson) => {
   });
 
   const textPlateMesh = new THREE.Mesh(textPlateGeometry, textPlateMaterial);
-
-  const font = await new Promise<Font>((res) => {
-    loader.load("/fonts/helvetiker_regular.typeface.json", (font) => res(font));
-  });
+  const font = loader.parse(fontUrl);
 
   const material = new THREE.MeshPhongMaterial({
     color: "#faf8bb",
