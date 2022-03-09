@@ -118,6 +118,64 @@ scene.add(light);
   emailLink.style.transform = `translate(-50%, -50%) translate(${
     emailLinkX + 155
   }px,${emailLinkY - 8}px)`;
+
+  const moveLinks = () => {
+    const coordsGithub = new THREE.Vector3();
+
+    github.updateWorldMatrix(true, false);
+    github.getWorldPosition(coordsGithub);
+
+    coordsGithub.project(camera);
+    const ghLinkX = (coordsGithub.x * 0.5 + 0.5) * canvas.clientWidth;
+    const ghLinkY = (coordsGithub.y * -0.5 + 0.5) * canvas.clientHeight;
+
+    githubLink.style.transform = `translate(-50%, -50%) translate(${
+      ghLinkX + 50
+    }px,${ghLinkY - 8}px)`;
+
+    const coordsHH = new THREE.Vector3();
+
+    hh.updateWorldMatrix(true, false);
+    hh.getWorldPosition(coordsHH);
+
+    coordsHH.project(camera);
+    const hhLinkX = (coordsHH.x * 0.5 + 0.5) * canvas.clientWidth;
+    const hhLinkY = (coordsHH.y * -0.5 + 0.5) * canvas.clientHeight;
+
+    hhLink.style.transform = `translate(-50%, -50%) translate(${
+      hhLinkX + 50
+    }px,${hhLinkY - 8}px)`;
+
+    const coordsTG = new THREE.Vector3();
+
+    tg.updateWorldMatrix(true, false);
+    tg.getWorldPosition(coordsTG);
+
+    coordsTG.project(camera);
+    const tgLinkX = (coordsTG.x * 0.5 + 0.5) * canvas.clientWidth;
+    const tgLinkY = (coordsTG.y * -0.5 + 0.5) * canvas.clientHeight;
+
+    tgLink.style.transform = `translate(-50%, -50%) translate(${
+      tgLinkX + 240
+    }px,${tgLinkY - 8}px)`;
+
+    const coordsEmail = new THREE.Vector3();
+
+    email.updateWorldMatrix(true, false);
+    email.getWorldPosition(coordsEmail);
+
+    coordsEmail.project(camera);
+    const emailLinkX = (coordsEmail.x * 0.5 + 0.5) * canvas.clientWidth;
+    const emailLinkY = (coordsEmail.y * -0.5 + 0.5) * canvas.clientHeight;
+
+    emailLink.style.transform = `translate(-50%, -50%) translate(${
+      emailLinkX + 155
+    }px,${emailLinkY - 8}px)`;
+  };
+
+  moveLinks();
+
+  window.addEventListener("resize", moveLinks);
 })();
 
 const clock = new THREE.Clock();
